@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIPickerViewDataSource {
+class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     @IBOutlet var selectField: UIPickerView!
     @IBOutlet var lbFileName: UILabel!
     @IBOutlet var imageView: UIImageView!
@@ -17,10 +17,11 @@ class ViewController: UIViewController, UIPickerViewDataSource {
     
 
     let fieldArray: Array<String> = ["소설", "자기계발", "사회", "인문", "과학"]
-    let MAX_ARRAY_NUM = 4
+    let bookArray: Array<String> = ["나미야 잡화점의 기적", "자존감 수업", "세상을 바꾸는 언어", "사피엔스", "코스모스"]
+    let MAX_ARRAY_NUM = 5
     var imageArray = [UIImage?]()
     let PICKER_VIEW_COLUMN = 1
-  var imageFileName = ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg"]
+    var imageFileName = ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +31,7 @@ class ViewController: UIViewController, UIPickerViewDataSource {
             let image = UIImage(named: imageFileName[i])
             imageArray.append(image)
             
-            lbFileName.text = imageFileName[0]
+            lbFileName.text = bookArray[0]
             imageView.image = imageArray[0]
         }
     }
@@ -45,18 +46,18 @@ class ViewController: UIViewController, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-       // return imageFileName.count
+       
             return fieldArray.count
         
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-       // return imageFileName[row]
+
             return fieldArray[row]
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        lbFileName.text = imageFileName[row]
+        lbFileName.text = bookArray[row]
         imageView.image = imageArray[row]
     }
     
